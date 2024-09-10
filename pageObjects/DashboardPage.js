@@ -124,6 +124,14 @@ class DashboardPage {
         await this.maxPriceFilterText.press('Enter')
     }
 
+    async navigateToCartPage() {
+        await this.cartLink.click()
+    }
+
+    async signOutFromApplication() {
+        await this.signOutLink.click()
+    }
+
 }
 
 module.exports = {DashboardPage}
