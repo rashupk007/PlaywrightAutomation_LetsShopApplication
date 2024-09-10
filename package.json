@@ -15,6 +15,7 @@
     "regression":"npx playwright test --grep @regression",
     "api":"npx playwright test --grep @api",
     "pom":"npx playwright test --grep @pom",
+    "pom1":"npx playwright test --grep @pom1",
     "allure:generate":"npx allure generate allure-results -o allure-results --clean",
     "allure:open":"npx allure serve allure-results"
   }
