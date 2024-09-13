@@ -128,6 +128,10 @@ class DashboardPage {
         await this.cartLink.click()
     }
 
+    async navigateToOrdersPage() {
+        await this.ordersLink.click()
+    }
+
     async signOutFromApplication() {
         await this.signOutLink.click()
     }

@@ -21,7 +21,7 @@ module.exports = defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 1 : 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html'],
@@ -30,9 +30,9 @@ module.exports = defineConfig({
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 
-  timeout: 100*1000,
+  timeout: 30*1000,
   expect:{
-    timeout:10*1000
+    timeout:30*1000
   },
 
   use: {
@@ -43,18 +43,18 @@ module.exports = defineConfig({
     trace: 'on',
     screenshot: 'on',
     video: 'on',
-    // headless: false,
-    // browserName: 'chromium'
+    headless: false,
+    browserName: 'chromium'
   },
 
   /* Configure projects for major browsers */
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'],
-        headless: false
-       },
-    },
+  // projects: [
+  //   {
+  //     name: 'chromium',
+  //     use: { ...devices['Desktop Chrome'],
+  //       headless: false
+  //      },
+  //   },
 
     // {
     //   name: 'firefox',
@@ -89,7 +89,7 @@ module.exports = defineConfig({
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
-  ],
+  // ],
 
   /* Run your local dev server before starting the tests */
   // webServer: {

@@ -15,6 +15,7 @@ const maxPrice = "40000"
 const invalidMinPrice = "300000"
 const InvalidMaxPrice = "500000"
 const multipleProducts = ["ZARA COAT 3", "IPHONE 13 PRO", "ADIDAS ORIGINAL"]
+const multipleSameProducts = ["ZARA COAT 3", "ZARA COAT 3"]
 
 let loginPage;
 let dashboardPage;
@@ -40,6 +41,12 @@ test.describe("Dashboard Test", ()=>{
     test("Validate adding multiple products to cart", {tag:'@pom'}, async()=>{
         await dashboardPage.searchAndAddMultipleProductsToCart(multipleProducts)
         await expect(dashboardPage.multipleItemsAddedToCard).toHaveText(multipleProducts.length.toString())
+    })
+
+    //Failing because product is not getting added to the cart if we add same product again to the cart
+    test("Validate adding same products multiple times to cart", {tag:'@pom'}, async()=>{
+        await dashboardPage.searchAndAddMultipleProductsToCart(multipleSameProducts)
+        await expect(dashboardPage.multipleItemsAddedToCard).toHaveText(multipleSameProducts.length.toString())
     })
 
     test("Validate View Product", {tag:'@pom'}, async()=>{
