@@ -27,6 +27,9 @@ class OrderSummaryPage {
     async navigateToHomePageUsingAutomationLogo() {
         await this.automationPracticeLogo.click()
     }
+    async navigateToOrderHistoryPage() {
+        await this.ordersHistoryPageLink.click()
+    }
     async validateItemsInOrderAsPerOrderPlaced(productsDetails) {
         let blnValidationOfItems = false
         let countOfValidations = 0

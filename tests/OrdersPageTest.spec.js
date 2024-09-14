@@ -8,8 +8,8 @@ const {OrdersPage} = require('../pageObjects/OrdersPage')
 const url = "https://rahulshettyacademy.com/client"
 const username = "ahmedrashaad3@gmail.com"
 const password = "Test@123"
-const orderNumberToView = "66e178cbae2afd4c0b70a47e"
-const orderNumberToDelete = "66e178f0ae2afd4c0b70a4c0"
+const orderNumberToView = "66e5e6a9ae2afd4c0b74d0c5"
+const orderNumberToDelete = "66e5e5ceae2afd4c0b74d052"
 
 let loginPage;
 let dashboardPage;

@@ -110,6 +110,19 @@ test("Validate navigating to Homepage using 'Automation Logo' in Order Summary P
     await expect(dashboardPage.searchTextBox).toBeVisible()
 })
 
+test("Validate navigating to Orders page using 'Orders History Page' link in Order Summary Page", {tag:'@pom'}, async ()=>{
+    await dashboardPage.searchProductAndAddToCart(productNameZaraCoat)
+    await expect(dashboardPage.addToCartSuccessMessage).toHaveText("Product Added To Cart")
+    await dashboardPage.navigateToCartPage()
+    await expect(cartPage.productsInCart).toHaveCount(1)
+    await cartPage.checkoutOrder()
+    await expect(checkoutPage.shippingInformationPlaceOrderButton).toBeVisible()
+    await checkoutPage.checkoutByProvidingDetails(creditCardNumber, creditCardExpiryMonth, creditCardExpiryYear, cvvCode, nameOnCard, emailID, country)
+    await expect(checkoutPage.checkoutSuccessfulMessage).toBeVisible()
+    await orderSummaryPage.navigateToOrderHistoryPage()
+    await expect(ordersPage.yourOrdersHeader).toBeVisible()
+})
+
 test("Validate single item added in order summary page as per ordered", {tag:'@pom'}, async ()=>{
     await dashboardPage.searchProductAndAddToCart(productNameIphone)
     await expect(dashboardPage.addToCartSuccessMessage).toHaveText("Product Added To Cart")
@@ -162,7 +175,7 @@ test("Validate placing order for multiple products and multiple extract Order Nu
     console.log(orderNumbers)
 })
 
-test.only("Validate 'Click to Download Order Details in CSV' in the Order Summary Page", {tag:'@pom'}, async ()=>{
+test("Validate 'Click to Download Order Details in CSV' in the Order Summary Page", {tag:'@pom'}, async ()=>{
     await dashboardPage.searchProductAndAddToCart(productNameIphone)
     await expect(dashboardPage.addToCartSuccessMessage).toHaveText("Product Added To Cart")
     await dashboardPage.navigateToCartPage()
