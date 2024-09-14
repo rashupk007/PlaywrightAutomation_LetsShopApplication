@@ -98,6 +98,22 @@ module.exports = {OrderSummaryPage}
 // const userPassword = "Test@123"
 // const confirmAge = "Yes"
 
+// Order Summary Page
+// const url = "https://rahulshettyacademy.com/client"
+// const username = "ahmedrashaad3@gmail.com"
+// const password = "Test@123"
+// const multipleProducts = ["ZARA COAT 3", "IPHONE 13 PRO", "ADIDAS ORIGINAL"]
+// const productNameIphone = "IPHONE 13 PRO"
+// const productNameZaraCoat = "ZARA COAT 3"
+// const productNameAdidas = "ADIDAS ORIGINAL"
+// const creditCardNumber = "4542 9931 9292 2293"
+// const creditCardExpiryMonth = "04"
+// const creditCardExpiryYear = "29"
+// const cvvCode = "354"
+// const nameOnCard = "Ahmed Rashaad"
+// const emailID = username
+// const country = "India"
+
 // Orders Page
 // const url = "https://rahulshettyacademy.com/client"
 // const username = "ahmedrashaad3@gmail.com"

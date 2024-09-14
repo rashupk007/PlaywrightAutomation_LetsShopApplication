@@ -20,10 +20,7 @@ const creditCardExpiryYear = "29"
 const cvvCode = "354"
 const nameOnCard = "Ahmed Rashaad"
 const emailID = username
-const invalidEmail = "ahmedrashaad"
 const country = "India"
-const invalidCountry = "Indiaajfjdf"
-const coupon = "COUPON123"
 
 let loginPage
 let dashboardPage
