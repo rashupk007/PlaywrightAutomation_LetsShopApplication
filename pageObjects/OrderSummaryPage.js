@@ -1,7 +1,75 @@
 class OrderSummaryPage {
     constructor(page) {
         this.page = page
-
+        this.orderNumber = page.locator("//label[@class='ng-star-inserted']")
+        this.orderedItemDetails = page.locator("//td[@class='line-item product-info-column m-3']")
+        this.clickToDownloadOrderDetailsInCSV = page.locator("//button[text()='Click To Download Order Details in CSV']")
+        this.clickToDownloadOrderDetailsInExcel = page.locator("//button[text()='Click To Download Order Details in Excel']")
+        this.homePageLink = page.locator("//button[@routerlink='/dashboard/']")
+        this.ordersPageLink = page.locator("//button[@routerlink='/dashboard/myorders']")
+        this.cartPageLink = page.locator("//button[@routerlink='/dashboard/cart']")
+        this.signOutLink = page.locator("//button[text()=' Sign Out ']")
+        this.automationPracticeLogo = page.locator("//label[@class='logo']")
+    }
+    async navigateToHomePage() {
+        await this.homePageLink.click()
+    }
+    async navigateToOrdersPage() {
+        await this.ordersPageLink.click()
+    }
+    async navigateToCartPage() {
+        await this.cartPageLink.click()
+    }
+    async signOutFromApplication() {
+        await this.signOutLink.click()
+    }
+    async navigateToHomePageUsingAutomationLogo() {
+        await this.automationPracticeLogo.click()
+    }
+    async validateItemsInOrderAsPerOrderPlaced(productsDetails) {
+        const blnValidationOfItems = false
+        const countOfValidations = 0
+        if (Array.isArray(productsDetails)) {
+            for(let product of productsDetails) {
+                const countOfProducts = this.orderedItemDetails.count()
+                for (let i=0;i<countOfProducts;i++) {
+                    const productNameInOrderSummaryPage = this.orderedItemDetails.nth(i).locator("div").first().textContent()
+                    if (productNameInOrderSummaryPage === product) {
+                        countOfValidations++
+                        break;
+                    }
+                }
+            }
+            if (countOfValidations === productsDetails.length) {
+                blnValidationOfItems = true
+            }
+        } else {
+            const productNameInOrderSummaryPage = this.orderedItemDetails.locator("div").first().textContent()
+            if (productNameInOrderSummaryPage === productsDetails) {
+                blnValidationOfItems = true
+            }
+        }
+        return blnValidationOfItems
+    }
+    async validateDownloadAsCSV() {
+        await this.clickToDownloadOrderDetailsInCSV.click()
+    }
+    async validateDownloadAsExcel() {
+        await this.clickToDownloadOrderDetailsInExcel.click()
+    }
+    async captureOrderNumberFromOrderSummaryPage() {
+        let orderNumberOutput = []
+        if (this.orderNumber.count() > 0) {
+            const countOfOrders = this.orderNumber.count()
+            for (let i=0;i<countOfOrders;i++) {
+                const orderNumberOutputText = this.orderNumber.nth(i).textContent()
+                orderNumberOutput.push(orderNumberOutputText.slice(3,orderNumberOutputText.length-3))
+            }
+        } else {
+            const orderNumberOutputText = this.orderNumber.textContent()
+            orderNumberOutput.push(orderNumberOutputText.slice(3,orderNumberOutputText.length-3))
+        }
+        return orderNumberOutput
     }
 }
 

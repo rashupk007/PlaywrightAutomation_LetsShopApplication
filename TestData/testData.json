@@ -1,6 +1,12 @@
 {
     "url" : "https://rahulshettyacademy.com/client",
     "username" : "ahmedrashaad3@gmail.com",
-    "password" : "Test@123"
-    
+    "password" : "Test@123",
+    "outputData_OrderNumber_1" : "",
+    "outputData_OrderNumber_2" : "",
+    "outputData_OrderNumber_3" : "",
+    "outputData_OrderNumber_4" : "",
+    "outputData_OrderNumber_5" : "",
+    "outputData_OrderNumber_6" : "",
+    "outputData_OrderNumber_7" : ""
 }
