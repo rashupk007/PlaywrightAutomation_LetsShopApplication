@@ -64,6 +64,13 @@ class UserRegistrationPage {
         await this.confirmAgeRequiredField.waitFor()
     }
 
+    async getUniqUsername(username) {
+        //Making username unique with random number generation using date and time.
+        const date = new Date()
+        const uniq = date.getFullYear()+""+(date.getMonth()+1)+""+date.getDate()+""+date.getHours()+""+date.getMinutes()+""+date.getSeconds()
+        return await username.replace("<UNIQ>", uniq)
+    }
+
 }
 
 module.exports = {UserRegistrationPage}

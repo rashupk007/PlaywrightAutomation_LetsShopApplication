@@ -5,11 +5,7 @@ const {DashboardPage} = require('../pageObjects/DashboardPage')
 const {CartPage} = require('../pageObjects/CartPage')
 const {OrdersPage} = require('../pageObjects/OrdersPage')
 
-const url = "https://rahulshettyacademy.com/client"
-const username = "ahmedrashaad3@gmail.com"
-const password = "Test@123"
-const orderNumberToView = "66e5e6a9ae2afd4c0b74d0c5"
-const orderNumberToDelete = "66e5e5ceae2afd4c0b74d052"
+const testData = require('../TestData/testData.json')
 
 let loginPage;
 let dashboardPage;
@@ -21,51 +17,48 @@ test.beforeEach(async({page})=>{
     dashboardPage = new DashboardPage(page)
     cartPage = new CartPage(page)
     ordersPage = new OrdersPage(page)
-    await loginPage.launchApplication(url)
-    await loginPage.validLogin(username, password)
+    await loginPage.launchApplication(testData.url)
+    await loginPage.validLogin(testData.username, testData.password)
 })
 
-test("Navigate to the Shopping Page using 'Go Back to Shop' button", {tag:'@pom'}, async ()=>{
-    await dashboardPage.navigateToOrdersPage()
-    await expect(ordersPage.yourOrdersHeader).toBeVisible()
-    await ordersPage.navigateToShoppingPage()
-    await expect(dashboardPage.searchTextBox).toBeVisible()
-})
-
-test("Navigate to the Cart Page using 'Go Back to Cart' button", {tag:'@pom'}, async ()=>{
-    await dashboardPage.navigateToOrdersPage()
-    await expect(ordersPage.yourOrdersHeader).toBeVisible()
-    await ordersPage.navigateToCartPage()
-    await expect(cartPage.cartPageHeader).toBeVisible()
-})
-
-test("View first order from Orders Page", {tag:'@pom'}, async ()=>{
-    await dashboardPage.navigateToOrdersPage()
-    await expect(ordersPage.yourOrdersHeader).toBeVisible()
-    const orderNumber = await ordersPage.orderRecordsInOrdersTable.first().locator("th").textContent()
-    await ordersPage.viewFirstOrder()
-    await expect(ordersPage.orderNumberInOrderSummaryPage).toHaveText(orderNumber)
-})
-
-test("Delete first order from Orders Page", {tag:'@pom'}, async ()=>{
-    await dashboardPage.navigateToOrdersPage()
-    await expect(ordersPage.yourOrdersHeader).toBeVisible()
-    const ordersCount = await ordersPage.orderRecordsInOrdersTable.count()
-    await ordersPage.deleteFirstOrder()
-    await expect(ordersPage.orderRecordsInOrdersTable).toHaveCount(ordersCount-1)
-})
-
-test("View order from Orders Page based on Order Number", {tag:'@pom'}, async ()=>{
-    await dashboardPage.navigateToOrdersPage()
-    await expect(ordersPage.yourOrdersHeader).toBeVisible()
-    await ordersPage.viewOrderByOrderNumber(orderNumberToView)
-    await expect(ordersPage.orderNumberInOrderSummaryPage).toHaveText(orderNumberToView)
-})
-
-test("Delete order from Orders Page based on Order Number", {tag:'@pom'}, async ()=>{
-    await dashboardPage.navigateToOrdersPage()
-    await expect(ordersPage.yourOrdersHeader).toBeVisible()
-    const ordersCount = await ordersPage.orderRecordsInOrdersTable.count()
-    await ordersPage.deleteOrderByOrderNumber(orderNumberToDelete)
-    await expect(ordersPage.orderRecordsInOrdersTable).toHaveCount(ordersCount-1)
+test.describe("Orders Page Test", ()=>{
+    test("Navigate to the Shopping Page using 'Go Back to Shop' button", {tag:'@pom'}, async ()=>{
+        await dashboardPage.navigateToOrdersPage()
+        await expect(ordersPage.yourOrdersHeader).toBeVisible()
+        await ordersPage.navigateToShoppingPage()
+        await expect(dashboardPage.searchTextBox).toBeVisible()
+    })
+    test("Navigate to the Cart Page using 'Go Back to Cart' button", {tag:'@pom'}, async ()=>{
+        await dashboardPage.navigateToOrdersPage()
+        await expect(ordersPage.yourOrdersHeader).toBeVisible()
+        await ordersPage.navigateToCartPage()
+        await expect(cartPage.cartPageHeader).toBeVisible()
+    })
+    test("View first order from Orders Page", {tag:'@pom'}, async ()=>{
+        await dashboardPage.navigateToOrdersPage()
+        await expect(ordersPage.yourOrdersHeader).toBeVisible()
+        const orderNumber = await ordersPage.orderRecordsInOrdersTable.first().locator("th").textContent()
+        await ordersPage.viewFirstOrder()
+        await expect(ordersPage.orderNumberInOrderSummaryPage).toHaveText(orderNumber)
+    })
+    test("Delete first order from Orders Page", {tag:'@pom'}, async ()=>{
+        await dashboardPage.navigateToOrdersPage()
+        await expect(ordersPage.yourOrdersHeader).toBeVisible()
+        const ordersCount = await ordersPage.orderRecordsInOrdersTable.count()
+        await ordersPage.deleteFirstOrder()
+        await expect(ordersPage.orderRecordsInOrdersTable).toHaveCount(ordersCount-1)
+    })
+    test("View order from Orders Page based on Order Number", {tag:'@pom'}, async ()=>{
+        await dashboardPage.navigateToOrdersPage()
+        await expect(ordersPage.yourOrdersHeader).toBeVisible()
+        await ordersPage.viewOrderByOrderNumber(testData.outputData_OrderNumber_13)
+        await expect(ordersPage.orderNumberInOrderSummaryPage).toHaveText(testData.outputData_OrderNumber_13)
+    })
+    test("Delete order from Orders Page based on Order Number", {tag:'@pom'}, async ()=>{
+        await dashboardPage.navigateToOrdersPage()
+        await expect(ordersPage.yourOrdersHeader).toBeVisible()
+        const ordersCount = await ordersPage.orderRecordsInOrdersTable.count()
+        await ordersPage.deleteOrderByOrderNumber(testData.outputData_OrderNumber_12)
+        await expect(ordersPage.orderRecordsInOrdersTable).toHaveCount(ordersCount-1)
+    })
 })
