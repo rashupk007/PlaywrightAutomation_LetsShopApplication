@@ -41,6 +41,11 @@ class OrdersPage {
             }
         }
     }
+    async getOrderNumberFromApplication() {
+        const count = await this.orderRecordsInOrdersTable.count()
+        const orderNumber = await this.orderRecordsInOrdersTable.nth(count-2).locator("th").textContent()
+        return orderNumber
+    }
 }
 
 module.exports = {OrdersPage}
