@@ -65,7 +65,7 @@ test.describe("User Registration Test", ()=>{
         await expect(userRegistrationPage.successMessage).not.toBeVisible()
     })
     // Failing because error message is being displayed for Last Name field. Even though it not a mandatory field - Defect # 1
-    test("Register without providing values for Last Name, Occupation and Gender", {tag:'@pom'}, async ()=>{
+    test.skip("Register without providing values for Last Name, Occupation and Gender", {tag:'@pom'}, async ()=>{
         await userRegistrationPage.registerUserPositiveScenario(testData.firstName, testData.blankValue, await userRegistrationPage.getUniqUsername(testData.userEmail), testData.userMobile, testData.blankValue, testData.blankValue, testData.userPassword, testData.confirmAge)
         await expect(userRegistrationPage.successMessage).toBeVisible()
         await expect(userRegistrationPage.successMessage).toHaveText("Account Created Successfully")

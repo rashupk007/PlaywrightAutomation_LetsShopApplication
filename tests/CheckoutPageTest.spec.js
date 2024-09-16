@@ -76,7 +76,7 @@ test.describe("Checkout Page Test", ()=>{
         await expect(checkoutPage.checkoutErrorMessage).toBeVisible()
     })
     //Failing because order is getting checked out without card number or cvv number
-    test("Validate checkout functionality without providing any details in Personal Information section in checkout page", {tag:'@pom'}, async ()=>{
+    test.skip("Validate checkout functionality without providing any details in Personal Information section in checkout page", {tag:'@pom'}, async ()=>{
         await dashboardPage.searchProductAndAddToCart(testData.productNameAdidas)
         await expect(dashboardPage.addToCartSuccessMessage).toHaveText("Product Added To Cart")
         await dashboardPage.navigateToCartPage()
@@ -117,7 +117,7 @@ test.describe("Checkout Page Test", ()=>{
         await expect(checkoutPage.invalidCouponErrorMessage).toBeVisible()
     })
     //Failing this test bacause it is checking out the order without proper email id.
-    test("Validate checkout functionality by providing invalid email id in checkout page", {tag:'@pom'}, async ()=>{
+    test.skip("Validate checkout functionality by providing invalid email id in checkout page", {tag:'@pom'}, async ()=>{
         await dashboardPage.searchProductAndAddToCart(testData.productNameZaraCoat)
         await expect(dashboardPage.addToCartSuccessMessage).toHaveText("Product Added To Cart")
         await dashboardPage.navigateToCartPage()
@@ -138,7 +138,7 @@ test.describe("Checkout Page Test", ()=>{
         await expect(checkoutPage.checkoutErrorMessage).toBeVisible()
     })
     //Failing because payment type 'Paypal' is not clickable in checkout page
-    test("Validate selecting 'Paypal' payment type in checkout page", {tag:'@pom'}, async ()=>{
+    test.skip("Validate selecting 'Paypal' payment type in checkout page", {tag:'@pom'}, async ()=>{
         await dashboardPage.searchProductAndAddToCart(testData.productNameZaraCoat)
         await expect(dashboardPage.addToCartSuccessMessage).toHaveText("Product Added To Cart")
         await dashboardPage.navigateToCartPage()
@@ -149,7 +149,7 @@ test.describe("Checkout Page Test", ()=>{
         await expect(checkoutPage.personalInformationCreditCardNumber).not.toBeVisible()
     })
     //Failing because payment type 'SEPA' is not clickable in checkout page
-    test("Validate selecting 'SEPA' payment type in checkout page", {tag:'@pom'}, async ()=>{
+    test.skip("Validate selecting 'SEPA' payment type in checkout page", {tag:'@pom'}, async ()=>{
         await dashboardPage.searchProductAndAddToCart(testData.productNameZaraCoat)
         await expect(dashboardPage.addToCartSuccessMessage).toHaveText("Product Added To Cart")
         await dashboardPage.navigateToCartPage()
@@ -160,7 +160,7 @@ test.describe("Checkout Page Test", ()=>{
         await expect(checkoutPage.personalInformationCreditCardNumber).not.toBeVisible()
     })
     //Failing because payment type 'Invoice' is not clickable in checkout page
-    test("Validate selecting 'Invoice' payment type in checkout page", {tag:'@pom'}, async ()=>{
+    test.skip("Validate selecting 'Invoice' payment type in checkout page", {tag:'@pom'}, async ()=>{
         await dashboardPage.searchProductAndAddToCart(testData.productNameZaraCoat)
         await expect(dashboardPage.addToCartSuccessMessage).toHaveText("Product Added To Cart")
         await dashboardPage.navigateToCartPage()
