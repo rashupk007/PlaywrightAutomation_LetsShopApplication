@@ -49,7 +49,7 @@ test.describe("Order Summary Page Test", ()=>{
         await orderSummaryPage.navigateToHomePage()
         await expect(dashboardPage.searchTextBox).toBeVisible()
     })
-    test("Validate navigating to Orders using 'Orders' Link in Order Summary Page", {tag:'@pom'}, async ()=>{
+    test("Validate navigating to Orders using 'Orders' Link in Order Summary Page and view the Order created using the Order Number", {tag:'@pom'}, async ()=>{
         await dashboardPage.searchProductAndAddToCart(testData.productNameIphone)
         await expect(dashboardPage.addToCartSuccessMessage).toHaveText("Product Added To Cart")
         await dashboardPage.navigateToCartPage()
@@ -62,6 +62,8 @@ test.describe("Order Summary Page Test", ()=>{
         testData.outputData_OrderNumber_2 = await orderNumbers[0]
         await orderSummaryPage.navigateToOrdersPage()
         await expect(ordersPage.yourOrdersHeader).toBeVisible()
+        await ordersPage.viewOrderByOrderNumber(testData.outputData_OrderNumber_2)
+        await expect(ordersPage.orderNumberInOrderSummaryPage).toHaveText(testData.outputData_OrderNumber_2)
     })
     test("Validate navigating to Cart using 'Cart' Link in Order Summary Page", {tag:'@pom'}, async ()=>{
         await dashboardPage.searchProductAndAddToCart(testData.productNameAdidas)

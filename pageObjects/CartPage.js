@@ -10,6 +10,7 @@ class CartPage {
         this.ordersButton = page.locator("//button[@routerlink='/dashboard/myorders']")
         this.productsInCart = page.locator("//div[@class='infoWrap']")
         this.noProductsInYourCart = page.locator("//h1[text()='No Products in Your Cart !']")
+        this.productNamesInCart = page.locator("//div[@class='cartSection']")
         //The below element will move to CheckoutPage.js in future. For time being it is placed here.
         this.checkOutPageElementToBeDeleted = page.locator("//a[text()='Place Order ']")
     }
@@ -72,6 +73,24 @@ class CartPage {
             await this.page.waitForTimeout(500)
         }
         await this.noProductsInYourCart.waitFor()
+    }
+    async validateProductsInCartAsPerAddedItemsInDashboard(productsToValidate) {
+        let allItemsFound = false
+        let itemsFoundCount = 0
+        for (let productToValidate of productsToValidate) {
+            const countOfTheProducts = await this.productNamesInCart.count()
+            for (let i=0;i<countOfTheProducts;i++) {
+                const productText = await this.productNamesInCart.nth(i).locator("h3").textContent()
+                if (productText === productToValidate) {
+                    itemsFoundCount++
+                    break;
+                }
+            }
+        }
+        if (itemsFoundCount === productsToValidate.length) {
+            allItemsFound = true
+        }
+        return allItemsFound
     }
 }
 

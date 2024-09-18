@@ -43,6 +43,14 @@ test.describe("Cart Page Test", ()=>{
         await cartPage.checkoutOrder()
         await expect(cartPage.checkOutPageElementToBeDeleted).toBeVisible()
     })
+    test("Validate items added in the cart is as per the items added from the Dashboard page", {tag:'@pom'}, async ()=>{
+        await dashboardPage.searchAndAddMultipleProductsToCart(testData.multipleProducts)
+        await expect(dashboardPage.multipleItemsAddedToCard).toHaveText(testData.multipleProducts.length.toString())
+        await dashboardPage.navigateToCartPage()
+        await expect(cartPage.productsInCart).toHaveCount(testData.multipleProducts.length)
+        const validationOfItems = await cartPage.validateProductsInCartAsPerAddedItemsInDashboard(testData.multipleProducts)
+        await expect(validationOfItems).toBeTruthy()
+    })
     test("Navigate to Products Page by clicking Continue Shopping", {tag:'@pom'}, async ()=>{
         await dashboardPage.navigateToCartPage()
         await cartPage.navigateToContinueShopping()
