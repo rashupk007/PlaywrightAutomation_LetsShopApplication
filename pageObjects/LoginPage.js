@@ -38,8 +38,7 @@ class LoginPage {
         await this.dontHaveAnAccountRegisterHereLink.click()
     }
 
-    async navigateToForgotPasswordPage(url) {
-        await this.launchApplication(url)
+    async navigateToForgotPasswordPage() {
         await this.forgotPasswordLink.click()
         await this.enterNewPasswordHeader.waitFor()
     }

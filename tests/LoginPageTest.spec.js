@@ -49,7 +49,7 @@ test.describe("Login Test",()=>{
         await expect(userRegistrationPage.registerButton).toBeVisible()
     })
     test("Navigate to Forgot Password page using 'Forgot password?' link", {tag:'@pom'}, async()=>{
-        await loginPage.navigateToForgotPasswordPage(testData.url)
+        await loginPage.navigateToForgotPasswordPage()
         await expect(loginPage.enterNewPasswordHeader).toBeVisible()
     })
 })
