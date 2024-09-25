@@ -14,6 +14,7 @@ test.beforeEach(async({page})=>{
     loginPage = new LoginPage(page)
     userRegistrationPage = new UserRegistrationPage(page)
     forgotPasswordPage = new ForgotPasswordPage(page)
+    await loginPage.launchApplication(testData.url)
     await loginPage.navigateToForgotPasswordPage()
 })
 
