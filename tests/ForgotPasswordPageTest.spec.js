@@ -14,7 +14,7 @@ test.beforeEach(async({page})=>{
     loginPage = new LoginPage(page)
     userRegistrationPage = new UserRegistrationPage(page)
     forgotPasswordPage = new ForgotPasswordPage(page)
-    await loginPage.navigateToForgotPasswordPage(testData.url)
+    await loginPage.navigateToForgotPasswordPage()
 })
 
 test.describe("Forgot Password Test", ()=>{
