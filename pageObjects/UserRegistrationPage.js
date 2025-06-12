@@ -39,15 +39,14 @@ class UserRegistrationPage {
         if (occupation.length > 0) {
             await this.occupation.selectOption({label: occupation})
         }
-        occupation
         if (gender == "Male") {
             await this.genderMaleRadioButton.check()
         } else if (gender == "Female") {
             await this.genderFemaleRadioButton.check()
         }
         if (userPassword === "Different") {
-            await this.password.fill("Test@123")
-            await this.confirmPassword.fill("Test@124")
+            await this.password.fill(userPassword)
+            await this.confirmPassword.fill(userPassword+"abcd")
         } else {
             await this.password.fill(userPassword)
             await this.confirmPassword.fill(userPassword)

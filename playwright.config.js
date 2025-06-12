@@ -21,7 +21,7 @@ module.exports = defineConfig({
   /* Retry on CI only */
   // retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : 1,
+  workers: process.env.CI ? 3 : 3,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html'],
@@ -52,23 +52,23 @@ module.exports = defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'],
-        headless: false
+        headless: true
        },
     },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'],
-    //     // headless: true
-    //    },
-    // },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'],
+        headless: true
+       },
+    },
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'],
-    //     // headless: true
-    //    },
-    // },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'],
+        headless: true
+       },
+    },
 
     // /* Test against mobile viewports. */
     // {

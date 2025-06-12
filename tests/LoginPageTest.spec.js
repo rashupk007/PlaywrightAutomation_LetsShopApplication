@@ -15,7 +15,7 @@ test.beforeEach(async ({page})=>{
 })
 
 test.describe("Login Test",()=>{
-    test("Check the login with valid credentials", {tag:'@pom'}, async ({})=>{
+    test.only("Check the login with valid credentials", {tag:'@pom'}, async ({})=>{
         await loginPage.validLogin(testData.username, testData.password)
         await expect(loginPage.homePageIdentifier).toBeVisible()
     })
